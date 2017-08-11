@@ -1,35 +1,41 @@
 <?php
 //FUNÇÃO PARA PEGAR CONTATOS
-function pegarContatos(){
-    $contatosAuxiliar = file_get_contents('contatos.json');
-    $contatosAuxiliar = json_decode($contatosAuxiliar, true);
-    return $contatosAuxiliar;
+function pegarContatos()
+{
+    $contatosAuxiliar = file_get_contents('contatos.json'); //Leitura do Arquivo
+    $contatosAuxiliar = json_decode($contatosAuxiliar, true); //converte dados do Json para array
+    return $contatosAuxiliar; //retorna a variável contatos Auxiliar
 }
-function salvarArquivoJson($contatosAuxiliar){
-    $contatosJson = json_encode($contatosAuxiliar, JSON_PRETTY_PRINT);
-    file_put_contents('contatos.json', $contatosJson);
-    header("Location: ind_agenda.php");
+
+function salvarArquivoJson($contatosAuxiliar)
+{
+    $contatosJson = json_encode($contatosAuxiliar, JSON_PRETTY_PRINT);//converte dados do array para json
+    file_put_contents('contatos.json', $contatosJson); //atualiza o conteúdo do Json
+    header("Location: ind_agenda.php"); //redireciona para outra pagina
 }
+
 //FUNÇÃO ṔARA CADASTRAR
-function cadastrar($nome, $email, $telefone){
+function cadastrar($nome, $email, $telefone)
+{
     $contatosAuxiliar = pegarContatos();
     $contato = [
-        'id'      => uniqid(),
-        'nome'    => $nome,
-        'email'   => $email,
+        'id' => uniqid(), //deixar uma indentificação única
+        'nome' => $nome,
+        'email' => $email,
         'telefone' => $telefone
     ];
-    array_push($contatosAuxiliar, $contato);
+    array_push($contatosAuxiliar, $contato);//adiciona valores ao array
     salvarArquivoJson($contatosAuxiliar);
 }
 
 //FUNÇÃO PARA EXCLUIR CONTATOS DA LISTA
-function excluirContatos($id){
+function excluirContatos($id)
+{
     $contatosAuxiliar = pegarContatos();
 
-    foreach ($contatosAuxiliar as $posicao => $contato){
-        if($id == $contato['id']){
-            unset($contatosAuxiliar[$posicao]);
+    foreach ($contatosAuxiliar as $posicao => $contato) { /*itera sobre o array. percorre cada contato da %contatosAuxiliar para pegar id do contato*/
+        if ($id == $contato['id']) {
+            unset($contatosAuxiliar[$posicao]); //Destrói a posição do contato com o id requisitado da variavel $contatoAuxiliar
         }
     }
 
@@ -37,20 +43,22 @@ function excluirContatos($id){
 }
 
 //FUNÇÃO PARA EDITAR CONTATOS DA LISTA
-function editarContatos($id){
+function editarContatos($id)
+{
     $contatosAuxiliar = pegarContatos();
-    foreach ($contatosAuxiliar as $contato){
-        if($contato['id'] == $id){
+    foreach ($contatosAuxiliar as $contato){ /*itera sobre o array. percorre cada contato do $contatosAuxiliar para pegar id do contato*/
+        if ($contato['id'] == $id) {
             return $contato;
         }
     }
 }
 
 //FUNCAO SALVAR CONTATO EDITADO
-function salvarContatoEditado($id, $nome, $email, $telefone){
+function salvarContatoEditado($id, $nome, $email, $telefone)
+{
     $contatosAuxiliar = pegarContatos();
-    foreach ($contatosAuxiliar as $posicao => $contato){
-        if($contato['id'] == $id){
+    foreach ($contatosAuxiliar as $posicao => $contato) {/*itera sobre o array. percorre cada contato do contatosAuxiliar para pegar informações do contato*/
+        if ($contato['id'] == $id) {
             $contatosAuxiliar[$posicao]['nome'] = $nome;
             $contatosAuxiliar[$posicao]['email'] = $email;
             $contatosAuxiliar[$posicao]['telefone'] = $telefone;
@@ -59,6 +67,7 @@ function salvarContatoEditado($id, $nome, $email, $telefone){
     }
     salvarArquivoJson($contatosAuxiliar);
 }
+
 //FUNCAO BUSCAR
 function buscar($nome){
 
@@ -67,7 +76,7 @@ function buscar($nome){
 
     $contatosEcontrados = [];
 
-    foreach ($contatosAuxiliar as $posicao => $contato) {
+    foreach ($contatosAuxiliar as $posicao => $contato) { /*itera sobre o array. percorre cada contato do contatosAuxiliar para pegar nome contato*/
 
         if (strtoupper($contato['nome']) == $nome) {
             $contatosEcontrados[] = $contato;
@@ -76,13 +85,14 @@ function buscar($nome){
 
     return $contatosEcontrados;
 }
+
 //-----------------------------------------------------------------------------------------------------------------
-if($_GET['acao'] == 'cadastrar'){
+if ($_GET['acao'] == 'cadastrar') {
     cadastrar($_POST['nome'], $_POST['email'], $_POST['telefone']);
-} elseif ($_GET['acao'] == 'excluir'){
+} elseif ($_GET['acao'] == 'excluir') {
     excluirContatos($_GET['id']);
-} elseif ($_GET['acao'] == 'editar'){
+} elseif ($_GET['acao'] == 'editar') {
     salvarContatoEditado($_POST['id'], $_POST['nome'], $_POST['email'], $_POST['telefone']);
-} elseif ($_GET['acao'] = 'buscar'){
+} elseif ($_GET['acao'] = 'buscar') {
     buscar($_GET['nome']);
 }

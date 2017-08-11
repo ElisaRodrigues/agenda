@@ -3,7 +3,7 @@ session_start();
 
 //caso esteja logado, redireciona para login.php
 $logado = isset($_SESSION['usuario_online']);
-if ($logado == false){
+if ($logado == false) {
     header('Location: login.php');
 }
 
@@ -24,13 +24,15 @@ if (isset($_GET['buscar']) and !empty($_GET['buscar'])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <h1><center><a href="verifica_usuario.php?acao=sair" class="sair">sair</a></center></h1>
+<h1>
+    <center><a href="verifica_usuario.php?acao=sair" class="sair">sair</a></center>
+</h1>
 
 
 <div class="container" style="margin-top: 30px;">
 
     <h3>MINHA AGENDA DE CONTATOS</h3>
-    <br />
+    <br/>
 
     <!--<a href="verifica_usuario.php?acao=logout">SAIR</a>-->
 
@@ -46,20 +48,13 @@ if (isset($_GET['buscar']) and !empty($_GET['buscar'])) {
                     <div class="input-group">
                         <input name="buscar" class="form-control" placeholder="Digite um nome..." type="text">
                         <input type="submit" value="buscar">
-    
+
                     </div>
 
                 </div>
             </div>
         </fieldset>
     </form>
-
-
-
-<!--    <form method="get" action="" class="form-horizontal">
-        <input name="pesquisa" class="form-control" placeholder="Nome do Contato" type="text">
-        <button type="submit" class="btn btn-default">BUSCAR</button>
-    </form> -->
 
     <br>
     <br>
@@ -92,7 +87,7 @@ if (isset($_GET['buscar']) and !empty($_GET['buscar'])) {
         </div>
     </div>
 
-    <br />
+    <br/>
 
     <!--CONTATOS-->
     <div class="row">

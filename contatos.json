@@ -1,32 +1,32 @@
 {
-    "1": {
-        "id": "595cfc40c1dab",
-        "nome": "Kauana",
-        "email": "kau@gmail.com",
-        "telefone": "(47)3333 3333"
-    },
-    "3": {
-        "id": "598b12d944fc1",
-        "nome": "Algel",
-        "email": "angel@gmail.com",
-        "telefone": "(47)99999999"
-    },
-    "4": {
-        "id": "598b1cfb51083",
-        "nome": "Administrador",
-        "email": "kau.tironi@gmail.com",
-        "telefone": "(47)99999999"
-    },
-    "5": {
-        "id": "598b1d00b72d9",
-        "nome": "victor",
-        "email": "vitorvex@gmail.com",
-        "telefone": "34661936"
-    },
-    "6": {
-        "id": "598b1ea353f79",
-        "nome": "Victor",
-        "email": "vitorvex@gmail.com",
-        "telefone": "(47)99999999"
-    }
+  "1": {
+    "id": "595cfc40c1dab",
+    "nome": "Kauana",
+    "email": "kau@gmail.com",
+    "telefone": "(47)3333 3333"
+  },
+  "3": {
+    "id": "598b12d944fc1",
+    "nome": "Algel",
+    "email": "angel@gmail.com",
+    "telefone": "(47)99999999"
+  },
+  "4": {
+    "id": "598b1cfb51083",
+    "nome": "Administrador",
+    "email": "kau.tironi@gmail.com",
+    "telefone": "(47)99999999"
+  },
+  "5": {
+    "id": "598b1d00b72d9",
+    "nome": "victor",
+    "email": "vitorvex@gmail.com",
+    "telefone": "34661936"
+  },
+  "6": {
+    "id": "598b1ea353f79",
+    "nome": "Victor",
+    "email": "vitorvex@gmail.com",
+    "telefone": "(47)99999999"
+  }
 }
